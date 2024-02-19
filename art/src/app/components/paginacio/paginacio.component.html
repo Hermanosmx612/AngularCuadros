@@ -1,0 +1,18 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" (click)="previousPage()">Previous</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" (click)="nextPage()">Next</a>
+      </li>
+      <li class="page-item">
+        <input type="number" class="form-control" placeholder="Página..." aria-label="Página" aria-describedby="basic-addon2" [(ngModel)]="numeroPagina">
+      </li>
+      <li class="page-item">
+        <button class="btn btn-primary" type="button" (click)="irAPagina()">Ir</button>
+      </li>
+      <h6>Total de paginas {{totalPaginas}}</h6>
+    </ul>
+  </nav>
+  

@@ -1,0 +1,46 @@
+<section class="container text-center text-lg-start">
+ <form [formGroup]="formulario" (ngSubmit)="enviarDatos()">
+<div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Username</span>
+    <input formControlName="username"
+    type="text" class="form-control" placeholder="Username" aria-label="Username"
+      aria-describedby="basic-addon1" 
+      [ngClass]="usernameNoValid ? 'is-invalid': 'is-valid'"
+      
+      />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon2">Fullname</span>
+    <input formControlName="full_name" type="text" class="form-control" placeholder="Full name" 
+    aria-label="fullname"
+      aria-describedby="basic-addon2" />
+  </div>
+  <label for="basic-url" class="form-label">Your avatar URL</label>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon3"></span>
+    <input formControlName="avatar_url" type="text" class="form-control" 
+           id="basic-url" aria-describedby="basic-addon3" 
+           name="avatar_url" readonly>
+  </div>
+  
+  <label for="basic-url" class="form-label">Your actual image</label>
+  <br>
+  <img [src]="formulario.get('avatar_url')?.value" width="300" height="300">
+  <!-- <label for="basic-url" class="form-label">Cambia la imagen</label>
+  <input type="file" class="form-control"> -->
+
+    <br>
+    <br>
+  <button type="submit">Cambiar datos</button>
+
+</form>
+@if (!formulario.valid) {
+    <div  >
+        No valid
+      </div>
+}
+
+
+<div>{{formulario.value | json}} </div>
+<!-- <div>{{formulario.get('website')?.valid}} </div>
+ -->  </section>

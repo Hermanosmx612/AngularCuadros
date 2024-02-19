@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Register</div>
+          <div class="card-body">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit(fileInput)">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" formControlName="lastname" class="form-control"
+                  [class.is-invalid]="registerForm.get('lastname')?.invalid && (registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched || isSubmitted)" />
+                <div ngIf="registerForm.get('lastname')?.errors?.required && (registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched || isSubmitted)" class="invalid-feedback">Fullname is required</div>
+              </div>
+
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" formControlName="username" class="form-control"
+                  [class.is-invalid]="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted)" />
+                <div ngIf="registerForm.get('username')?.errors?.required && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched || isSubmitted)" class="invalid-feedback">Username is required</div>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" formControlName="email" class="form-control"
+                  [class.is-invalid]="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted)" />
+                <div ngIf="registerForm.get('email')?.errors?.required && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted)" class="invalid-feedback">Email is required</div>
+                <div ngIf="registerForm.get('email')?.errors?.email && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched || isSubmitted)" class="invalid-feedback">Invalid email format</div>
+              </div>
+  
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="password" class="form-control"
+                  [class.is-invalid]="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted)"
+                  [type]="hidePassword ? 'password' : 'text'" />
+                <i class="bi bi-eye" (click)="togglePasswordVisibility()"></i>
+                <div ngIf="registerForm.get('password')?.errors?.required && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted)" class="invalid-feedback">Password is required</div>
+                <div ngIf="registerForm.get('password')?.errors?.minlength && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched || isSubmitted)" class="invalid-feedback">Password length must be at least 6 characters</div>
+              </div>
+  
+              <div class="form-group">
+                <label>Confirm password</label>
+                <input type="password" formControlName="confirmPassword" class="form-control"
+                  [class.is-invalid]="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched || isSubmitted)"
+                  [type]="hideConfirmPassword ? 'password' : 'text'" />
+                <i class="bi bi-eye" (click)="toggleConfirmPasswordVisibility()"></i>
+                <div ngIf="registerForm.get('confirmPassword')?.errors?.required && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched || isSubmitted)" class="invalid-feedback">You must repeat your password</div>
+                <div ngIf="registerForm.hasError('passwordsNotMatch')" class="invalid-feedback">Passwords do not match</div>
+              </div>
+
+              <div class="form-group">
+                <label>Photo</label>
+                <input type="file" #fileInput formControlName="photoBlob" class="form-control"
+                  [class.is-invalid]="registerForm.get('photo')?.invalid && (registerForm.get('photo')?.dirty || registerForm.get('photo')?.touched || isSubmitted)" />
+                <div ngIf="registerForm.get('photo')?.errors?.required || isSubmitted" class="invalid-feedback">Photo is required</div>
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
